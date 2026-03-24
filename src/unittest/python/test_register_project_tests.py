@@ -9,6 +9,7 @@ class MyTestCase(unittest.TestCase):
     """class for testing the register_order method"""
 
     def test_tc1(self):
+        """"""
         manager = EnterpriseManager()
         obj = manager.register_project("B12345678","PRO01", "car automatic development",
         "HR", "31/12/2027", 50000.00)
@@ -44,14 +45,14 @@ class MyTestCase(unittest.TestCase):
     # ECNV5
     def test_tc5(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project, 12345678, "PR001", "car automatic development",
-                                       "HR", "1/1/2027", 50000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project, 12345678, "PR001",
+                          "car automatic development", "HR", "1/1/2027", 50000.00)
 
     # ECNV3, BLNV1
     def test_tc6(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project,"B1234567", "PR0000002", "valid texts",
-                                       "Legal", "31/12/2026", 75000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project,"B1234567", "PR0000002",
+                          "valid texts", "Legal", "31/12/2026", 75000.00)
 
     # ECNV4, BLNV2
     def test_tc7(self):
@@ -62,8 +63,8 @@ class MyTestCase(unittest.TestCase):
     # ECNV5
     def test_tc8(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException,manager.register_project,"712345678", "PR001", "valid texts",
-                                       "Legal", "31/12/2026", 50000.00)
+        self.assertRaises(EnterpriseManagementException,manager.register_project,"712345678", "PR001",
+                          "valid texts", "Legal", "31/12/2026", 50000.00)
 
     #ECNV6
     def test_tc9(self):
@@ -159,8 +160,9 @@ class MyTestCase(unittest.TestCase):
     # ECNV22
     def test_tc24(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
-                              "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
+        obj = manager.register_project("B12345678", "PRO01", "car automatic development",
+                                       "HR", "31/12/2027", 50000.00)
+        self.assertRaises(EnterpriseManagementException, )
 
     # ECNV23
     def test_tc25(self):

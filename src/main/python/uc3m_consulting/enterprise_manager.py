@@ -1,9 +1,8 @@
+""" ADD SOMETHING """
 from .enterprise_management_exception import EnterpriseManagementException
 from .enterprise_project import EnterpriseProject
 from datetime import datetime
 import json
-
-"""Module """
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
@@ -12,6 +11,7 @@ class EnterpriseManager:
 
     def register_project(self, company_cif: str, project_achronym: str, project_description: str,
                          department: str, date: str, budget: float):
+        """ ADD DOCSTRING"""
         # CIF Check
         if not isinstance(company_cif, str):
             raise EnterpriseManagementException("Invalid Company Cif")
@@ -21,9 +21,9 @@ class EnterpriseManager:
         # Project_acronym Check
         if not isinstance(project_achronym, str):
             raise EnterpriseManagementException("Invalid Project Acronym")
-        if not (5 <= len(project_achronym) <= 10):
+        if not 5 <= len(project_achronym) <= 10:
             raise EnterpriseManagementException("Invalid Project Acronym")
-        if not (5 <= len(project_achronym) <= 10):
+        if not 5 <= len(project_achronym) <= 10:
             raise EnterpriseManagementException("Invalid Project Acronym Length")
         # isalnum() checks for a-z, A-Z, 0-9
         if not project_achronym.isalnum():
@@ -32,7 +32,7 @@ class EnterpriseManager:
         # Project_description check
         if not isinstance(project_description, str):
             raise EnterpriseManagementException("Invalid Project Description")
-        if not (10 <= len(project_description) <= 30):
+        if not 10 <= len(project_description) <= 30:
             raise EnterpriseManagementException("Invalid Project Description Length")
 
         # department check
@@ -50,7 +50,7 @@ class EnterpriseManager:
 
             if date_valid < datetime.today().date():
                 raise ValueError
-            if not (2025 <= year <= 2027):
+            if not 2025 <= year <= 2027:
                 raise ValueError
         except ValueError: raise EnterpriseManagementException("Invalid Date")
 
@@ -60,13 +60,20 @@ class EnterpriseManager:
                 raise ValueError
             if not (budget * 100).is_integer():
                 raise ValueError
-            if not (50000.00 <= budget <= 1000000.00):
+            if not 50000.00 <= budget <= 1000000.00:
                 raise ValueError
         except ValueError:
             raise EnterpriseManagementException("Invalid Budget")
 
         objProject = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)
+
+
+        with open("corporate_operations.json", "w") as file:
+            json.dump(objProject.to_json(), file, indent=4)
+
+        if objProject.project_id == None:
+            raise EnterpriseManagementException("Invalid Project ID")
 
         return objProject.project_id
 
