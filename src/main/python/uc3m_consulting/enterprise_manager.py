@@ -11,7 +11,7 @@ class EnterpriseManager:
         pass
 
     @staticmethod
-    def register_project(self, company_cif: str, project_achronym: str, project_description: str,
+    def register_project(company_cif: str, project_achronym: str, project_description: str,
                          department: str, date: str, budget: float):
         objProject = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)

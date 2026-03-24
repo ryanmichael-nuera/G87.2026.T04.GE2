@@ -1,6 +1,6 @@
 """class for testing the register_order method"""
 import unittest
-import datetime
+from datetime import datetime
 
 from uc3m_consulting import EnterpriseManager
 from uc3m_consulting import EnterpriseManagementException
