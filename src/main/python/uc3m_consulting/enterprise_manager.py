@@ -13,6 +13,10 @@ class EnterpriseManager:
     @staticmethod
     def register_project(company_cif: str, project_achronym: str, project_description: str,
                          department: str, date: str, budget: float):
+        # CIF Check
+        if not isinstance(company_cif, str):
+            raise EnterpriseManagementException("Invalid Company Cif")
+
         objProject = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)
 
