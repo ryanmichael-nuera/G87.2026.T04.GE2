@@ -1,4 +1,4 @@
-"""class for testing the regsiter_order method"""
+"""class for testing the register_order method"""
 import unittest
 import datetime
 
@@ -155,6 +155,18 @@ class MyTestCase(unittest.TestCase):
 
     # ECNV20-BLNV19
     def test_tc23(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
+
+    # ECNV22
+    def test_tc24(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                              "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
+
+    # ECNV23
+    def test_tc25(self):
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
