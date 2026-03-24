@@ -123,6 +123,41 @@ class MyTestCase(unittest.TestCase):
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", "valid texts", "Communications" , "1/1/2027", 50000.00)
 
+    # ECNV15
+    def test_tc18(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "HR", "12/12/2025", 50000.00)
+
+    # ECNV16
+    def test_tc19(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "Logistics", 10/14/2025, 50000.00)
+
+    # ECNV17 - BLNV7
+    def test_tc20(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "HR", "1/1/2024", 50000.00)
+
+    # ECNV18 - BLNV8
+    def test_tc21(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "Finance", "12/12/2028", 50000.00)
+
+    # ECNV19
+    def test_tc22(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "Legal", "12/12/2026", 50000.50)
+
+    # ECNV20-BLNV19
+    def test_tc23(self):
+        manager = EnterpriseManager()
+        self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
+                          "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
 
 if __name__ == '__main__':
     unittest.main()
