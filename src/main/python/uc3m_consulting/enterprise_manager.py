@@ -18,6 +18,14 @@ class EnterpriseManager:
         if not self.validate_cif(company_cif):
             raise EnterpriseManagementException("Invalid Company Cif")
 
+        # Project_acronym Check
+        if not isinstance(project_achronym, str):
+            raise EnterpriseManagementException("Invalid Project Acronym")
+        if not (5 <= len(project_achronym) <= 10):
+            raise EnterpriseManagementException("Invalid Project Acronym")
+        if not (5 <= len(project_achronym) <= 10):
+            raise EnterpriseManagementException("Invalid Project Acronym Length")
+
         objProject = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)
 
