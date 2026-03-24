@@ -1,6 +1,9 @@
 """class for testing the regsiter_order method"""
 import unittest
+import datetime
+
 from uc3m_consulting import EnterpriseManager
+from uc3m_consulting import EnterpriseManagementException
 
 class MyTestCase(unittest.TestCase):
     """class for testing the register_order method"""
