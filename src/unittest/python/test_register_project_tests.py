@@ -49,48 +49,56 @@ class MyTestCase(unittest.TestCase):
     # INVALID TEST CASES
     # ECNV5
     def test_tc5(self):
+        """" INVALID CIF """
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, 12345678,
                           "PR001", "car automatic development", "HR", "1/1/2027", 50000.00)
 
     # ECNV3, BLNV1
     def test_tc6(self):
+        """" INVALID CIF : CIF_length = 8 """
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B1234567",
                           "PR0000002", "valid texts", "Legal", "31/12/2026", 75000.00)
 
     # ECNV4, BLNV2
     def test_tc7(self):
+        """" INVALID CIF : CIF_length = 10 """
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B123456789",
                           "PR001", "valid texts", "Legal", "31/12/2026", 75000.00)
 
     # ECNV5
     def test_tc8(self):
+        """" INVALID CIF : First char is not a letter"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException,manager.register_project,"712345678",
                           "PR001", "valid texts", "Legal", "31/12/2026", 50000.00)
 
     #ECNV6
     def test_tc9(self):
+        """" INVALID PROJECT_ACHRONYM: DATATYPE (INT)"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException,manager.register_project,"B12345678",
                           123456, "valid texts", "HR", "31/12/2026", 50000.00)
 
     # ECNV7, BLNV3
     def test_tc10(self):
+        """" INVALID PROJECT_ACHRONYM: length = 4"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException,manager.register_project,"B12345678",
                           "PR07", "car automatic development", "HR", "31/12/2026", 50000.00)
 
     # ECNV8, BLNV4
     def test_tc11(self):
+        """" INVALID PROJECT_ACHRONYM: length = 11"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PRCF538FG07", "car automatic development", "HR", "31/12/2026", 50000.00)
 
     #ECNV9
     def test_tc12(self):
+        """" INVALID PROJECT_ACHRONYM: has characters other than specified"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR_F538FG0", "car automatic development",
@@ -98,66 +106,77 @@ class MyTestCase(unittest.TestCase):
 
     #ECNV10
     def test_tc13(self):
+        """" INVALID PROJECT_DESCRIPTION: DATA_TYPE"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", 12345678976, "Logistics", "1/1/2027", 50000.00)
 
     #ECNV11, BLNV5
     def test_tc14(self):
+        """" INVALID PROJECT_DESCRIPTION: char length (length < 10) (BVNV = 9)"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", "not valid", "HR", "31/12/2026", 50000.00)
 
     #ECNV12, BLNV6
     def test_tc15(self):
+        """" INVALID PROJECT_DESCRIPTION: char length (length > 30) (BVNV = 31)"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", "Real-time neural signal systems", "HR", "31/12/2026", 50000.00)
 
     #ECNV13
     def test_tc16(self):
+        """" INVALID DEPARTMENT: TYPE"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", "valid texts", 13579 , "31/12/2026", 50000.00)
 
     #ECNV14
     def test_tc17(self):
+        """" INVALID DEPARTMENT: WRONG VALUE"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
                           "PR001", "valid texts", "Communications" , "1/1/2027", 50000.00)
 
     # ECNV15
     def test_tc18(self):
+        """" INVALID DATE: DATA_TYPE"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "HR", 12122025, 50000.00)
 
     # ECNV16
     def test_tc19(self):
+        """" INVALID DATE: Invalid format for the date"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "Logistics", "10/14/2025", 50000.00)
 
     # ECNV17 - BLNV7
     def test_tc20(self):
+        """" INVALID DATE: Invalid year value (year < 2025)"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "HR", "1/1/2024", 50000.00)
 
     # ECNV18 - BLNV8
     def test_tc21(self):
+        """" INVALID DATE: Invalid year value (year > 2027)"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "Finance", "12/12/2028", 50000.00)
 
     # ECNV19
     def test_tc22(self):
+        """" INVALID BUDGET_TYPE"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "Legal", "12/12/2026", "50000.50")
 
     # ECNV20-BLNV19
     def test_tc23(self):
+        """" INVALID BUDGET: Invalid budget value"""
         manager = EnterpriseManager()
         self.assertRaises(EnterpriseManagementException, manager.register_project, "B12345678",
                           "PR001", "valid texts", "Logistics", "31/12/2026", 45000.00)
@@ -165,6 +184,7 @@ class MyTestCase(unittest.TestCase):
     # ECNV22
     @patch("uc3m_consulting.enterprise_project.hashlib.md5")
     def test_tc24(self, mock_md5):
+        """" INVALID OUTPUT: String not returned through MD5"""
         mock_md5.side_effect = Exception("MD5 failure")
 
         manager = EnterpriseManager()
@@ -176,6 +196,7 @@ class MyTestCase(unittest.TestCase):
     # ECNV23
     @patch("builtins.open")
     def test_tc25(self, mock_open):
+        """" INVALID OUTPUT: Data not saved in JSON File"""
         mock_open.side_effect = OSError("JSON Write Error")
 
         manager = EnterpriseManager()
