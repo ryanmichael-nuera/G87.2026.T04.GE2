@@ -24,8 +24,7 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid Project Acronym")
         if not 5 <= len(project_achronym) <= 10:
             raise EnterpriseManagementException("Invalid Project Acronym")
-        if not 5 <= len(project_achronym) <= 10:
-            raise EnterpriseManagementException("Invalid Project Acronym Length")
+
         # isalnum() checks for a-z, A-Z, 0-9
         if not project_achronym.isalnum():
             raise EnterpriseManagementException("Invalid Project Acronym Characters")
@@ -69,8 +68,18 @@ class EnterpriseManager:
 
         obj_project = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)
+        try:
+            project_id = obj_project.project_id
+        except Exception as exc:
+            raise EnterpriseManagementException("MD5 String Error") from exc
 
-        return obj_project.project_id
+        try:
+            with open("corporate_operations.json", "w", encoding= "utf-8") as file:
+                json.dump(obj_project.to_json(), file, indent=4)
+        except OSError as exc:
+            raise EnterpriseManagementException("Error Writing to JSON File") from exc
+
+        return project_id
 
 
     @staticmethod

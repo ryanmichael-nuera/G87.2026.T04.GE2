@@ -1,7 +1,6 @@
 """class for testing the register_order method"""
 import unittest
 from datetime import datetime
-import hashlib
 
 from unittest.mock import patch
 from uc3m_consulting import EnterpriseManager
@@ -12,7 +11,7 @@ class MyTestCase(unittest.TestCase):
     """class for testing the register_order method"""
 
     def test_tc1(self):
-        """"""
+        """ VALID CASE 1 """
         manager = EnterpriseManager()
         obj = manager.register_project("B12345678","PRO01", "car automatic development",
         "HR", "31/12/2027", 50000.00)
@@ -21,6 +20,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(obj.isalnum(), "should not have special characters")
 
     def test_tc2(self):
+        """ VALID CASE 2 """
         manager = EnterpriseManager()
         obj = manager.register_project("B12345678","890478", "valid texts",
         "Finance", str(datetime.today().strftime("%d/%m/%Y")), 50000.01)
@@ -29,6 +29,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(obj.isalnum(), "should not have special characters")
 
     def test_tc3(self):
+        """ VALID CASE 3 """
         manager = EnterpriseManager()
         obj = manager.register_project("B12345678","PR0000002", "valid textvalid textvalid tex",
         "Legal", "31/12/2027", 999999.99)
@@ -37,6 +38,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(obj.isalnum(), "should not have special characters")
 
     def test_tc4(self):
+        """" VALID CASE 4 """
         manager = EnterpriseManager()
         obj = manager.register_project("B12345678","PRCF538FG0", "valid text",
         "Logistics", "31/12/2026", 1000000.00)
@@ -48,26 +50,26 @@ class MyTestCase(unittest.TestCase):
     # ECNV5
     def test_tc5(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project, 12345678, "PR001",
-                          "car automatic development", "HR", "1/1/2027", 50000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project, 12345678,
+                          "PR001", "car automatic development", "HR", "1/1/2027", 50000.00)
 
     # ECNV3, BLNV1
     def test_tc6(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project,"B1234567", "PR0000002",
-                          "valid texts", "Legal", "31/12/2026", 75000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project,"B1234567",
+                          "PR0000002", "valid texts", "Legal", "31/12/2026", 75000.00)
 
     # ECNV4, BLNV2
     def test_tc7(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project,"B123456789", "PR001", "valid texts",
-                                           "Legal", "31/12/2026", 75000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project,"B123456789",
+                          "PR001", "valid texts", "Legal", "31/12/2026", 75000.00)
 
     # ECNV5
     def test_tc8(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException,manager.register_project,"712345678", "PR001",
-                          "valid texts", "Legal", "31/12/2026", 50000.00)
+        self.assertRaises(EnterpriseManagementException,manager.register_project,"712345678",
+                          "PR001", "valid texts", "Legal", "31/12/2026", 50000.00)
 
     #ECNV6
     def test_tc9(self):
@@ -78,14 +80,14 @@ class MyTestCase(unittest.TestCase):
     # ECNV7, BLNV3
     def test_tc10(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException,manager.register_project,"B12345678", "PR07", "car automatic development",
-                                       "HR", "31/12/2026", 50000.00)
+        self.assertRaises(EnterpriseManagementException,manager.register_project,"B12345678",
+                          "PR07", "car automatic development", "HR", "31/12/2026", 50000.00)
 
     # ECNV8, BLNV4
     def test_tc11(self):
         manager = EnterpriseManager()
-        self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678", "PRCF538FG07", "car automatic development",
-                                       "HR", "31/12/2026", 50000.00)
+        self.assertRaises(EnterpriseManagementException, manager.register_project,"B12345678",
+                          "PRCF538FG07", "car automatic development", "HR", "31/12/2026", 50000.00)
 
     #ECNV9
     def test_tc12(self):
@@ -167,7 +169,7 @@ class MyTestCase(unittest.TestCase):
 
         manager = EnterpriseManager()
 
-        with self.assertRaises(EnterpriseManagementException) as context:
+        with self.assertRaises(EnterpriseManagementException):
             manager.register_project("B12345678", "PRO01", "car automatic development",
                                      "HR", "31/12/2027", 50000.00)
 
@@ -178,7 +180,7 @@ class MyTestCase(unittest.TestCase):
 
         manager = EnterpriseManager()
 
-        with self.assertRaises(EnterpriseManagementException) as context:
+        with self.assertRaises(EnterpriseManagementException):
             manager.register_project("B12345678", "PRO01", "car automatic development",
                                        "HR", "31/12/2027", 50000.00)
 
