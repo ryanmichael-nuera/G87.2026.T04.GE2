@@ -1,8 +1,9 @@
 """ ADD SOMETHING """
+import json
+from datetime import datetime
+
 from .enterprise_management_exception import EnterpriseManagementException
 from .enterprise_project import EnterpriseProject
-from datetime import datetime
-import json
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
@@ -52,7 +53,8 @@ class EnterpriseManager:
                 raise ValueError
             if not 2025 <= year <= 2027:
                 raise ValueError
-        except ValueError: raise EnterpriseManagementException("Invalid Date")
+        except ValueError as exc:
+            raise EnterpriseManagementException("Invalid Date") from exc
 
         # budget check
         try:
@@ -62,20 +64,19 @@ class EnterpriseManager:
                 raise ValueError
             if not 50000.00 <= budget <= 1000000.00:
                 raise ValueError
-        except ValueError:
-            raise EnterpriseManagementException("Invalid Budget")
+        except ValueError as exc:
+            raise EnterpriseManagementException("Invalid Budget") from exc
 
-        objProject = EnterpriseProject(company_cif, project_achronym, project_description,
+        obj_project = EnterpriseProject(company_cif, project_achronym, project_description,
                                        department, date, budget)
 
-
         with open("corporate_operations.json", "w") as file:
-            json.dump(objProject.to_json(), file, indent=4)
+            json.dump(obj_project.to_json(), file, indent=4)
 
-        if objProject.project_id == None:
+        if obj_project.project_id is None:
             raise EnterpriseManagementException("Invalid Project ID")
 
-        return objProject.project_id
+        return obj_project.project_id
 
 
     @staticmethod
