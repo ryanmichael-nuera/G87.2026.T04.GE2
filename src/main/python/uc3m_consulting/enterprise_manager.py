@@ -1,7 +1,6 @@
-""" ADD SOMETHING """
+""" This class is the Enterprise Manager. """
 import json
 from datetime import datetime
-from decimal import Decimal, InvalidOperation
 
 from .enterprise_management_exception import EnterpriseManagementException
 from .enterprise_project import EnterpriseProject
@@ -13,7 +12,8 @@ class EnterpriseManager:
 
     def register_project(self, company_cif: str, project_achronym: str, project_description: str,
                          department: str, date: str, budget: float):
-        """ ADD DOCSTRING"""
+        """ This method registers a new enterprise project based on the required inputs and is
+        added into a JSON File for reference"""
         # CIF Check
         if not isinstance(company_cif, str):
             raise EnterpriseManagementException("Invalid Company Cif")
